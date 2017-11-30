@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1">
+    <title>微信朋友圈压测工具</title>
+    <style>
+        html, body {
+            padding: 2%;
+        }
+
+        .jumbotron {
+            text-align: center;
+        }
+
+        #url {
+            padding: 3%;
+            margin-left: 15%;
+            width: 70%;
+            text-align: center;
+            font-size: 18px;
+        }
+    </style>
+</head>
+
+
+<body>
+
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">微信朋友圈-压测工具</a>
+        </div>
+    </div>
+</nav>
+
+<div class="jumbotron">
+
+    <form class="form">
+        <div class="form-group">
+            <label for="url"></label>
+            <input type="text" class="form-control" id="url" placeholder="url (e.g. www.17173.com)">
+        </div>
+        <br/>
+        <br/>
+        <div class="form-group">
+            <label class="radio-inline">
+                <input type="radio" name="level" id="level_1" value="1" checked> 一跳
+            </label>
+            <label class="radio-inline">
+                <input type="radio" name="level" id="level_2" value="2"> 二跳
+            </label>
+        </div>
+        <br/>
+        <br/>
+        <p><a class="btn btn-primary" href="#" role="button" id="submit">RUN TEST</a></p>
+        <br/>
+        <p><a target="_blank" a href="https://ad.weixin.qq.com/learn/n10">官网文档戳我</a></p>
+    </form>
+
+</div>
+
+
+<script src="//cdn.bootcss.com/jquery/1.12.0/jquery.min.js"></script>
+<!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css"
+      integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+
+<script>
+
+    $("#submit").click(function (e) {
+
+        var url = $("#url").val();
+        var level = $('input[name="level"]:checked').val();
+
+
+        if (!url) {
+            alert("url is empty.");
+            return false;
+        }
+
+        if (level != 1 && level != 2) {
+            level = 1;
+        }
+
+        console.log("url : " + "http://display.6edigital.com/wechat_pressure_test/index.php?url=" + encodeURIComponent(url) + "&level=" + level);
+
+        window.open("http://display.6edigital.com/wechat_pressure_test/index.php?url=" + url + "&level=" + level);
+
+    });
+
+
+</script>
+</body>
+</html>
